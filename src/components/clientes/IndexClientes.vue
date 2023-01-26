@@ -77,6 +77,7 @@
                             <th>Apellido</th>
                             <th>Numero</th>
                             <th>Correo</th>
+                            <th>País</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -87,6 +88,7 @@
                             <td>{{ cliente.apellido }}</td>
                             <td>{{ cliente.celular }}</td>
                             <td>{{ cliente.email }}</td>
+                            <td v-if="cliente.pais">{{ cliente.pais.nombre }}</td><td v-else></td>
                             <td>
                                 <button class="btn btn-success" @click="editCliente(cliente.id)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

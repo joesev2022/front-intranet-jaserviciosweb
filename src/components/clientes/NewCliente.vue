@@ -1,17 +1,21 @@
 <script setup>
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 let form = ref([]);
+let pais_id = ref([]);
+let paises = ref([]);
+
 const onSave = async () => {
     const formData = new FormData();
     formData.append('nombre', form.value.nombre);
     formData.append('apellido', form.value.apellido);
     formData.append('celular', form.value.celular);
     formData.append('email', form.value.email);
+    formData.append('pais_id', pais_id.value);
     formData.append('direccion', form.value.direccion);
     formData.append('descripcion', form.value.descripcion);
     /*for (const value of formData.values()) {
@@ -31,6 +35,15 @@ const onSave = async () => {
         console.log(response);
     })        
 };
+
+const getPaises = async () => {
+    let response = await axios.get('http://localhost:8000/api/get_all_paises');
+    paises.value = response.data.paises;
+};
+
+onMounted(async () => {
+    getPaises()
+});
 </script>
 <template>
     <div class="container">
@@ -58,13 +71,24 @@ const onSave = async () => {
                                 <input type="text" v-model="form.celular" class="form-control" placeholder="Celular" id="inputCelular">
                             </div>
                             <div class="col">
-                                <label class="col-form-label mt-2" for="inputDefault">E-mail</label>
-                                <input type="text" v-model="form.email" class="form-control" placeholder="E-mail" id="inputDefault">
+                                <label class="col-form-label mt-2" for="inputEmail">E-mail</label>
+                                <input type="text" v-model="form.email" class="form-control" placeholder="E-mail" id="inputEmail">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-form-label mt-2" for="inputDefault">Dirección</label>
-                            <input type="text" v-model="form.direccion" class="form-control" placeholder="Dirección" id="inputDefault">
+                        <div class="row">
+                            <div class="col">
+                                <label class="col-form-label mt-2" for="inputPais">País</label>
+                                <select class="form-select" id="exampleSelect1" v-model="pais_id">
+                                    <option disabled>Seleccionar País</option>
+                                    <option :value="pais.id" v-for="pais in paises" :key="pais.id">
+                                        {{ pais.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="col-form-label mt-2" for="inputDefault">Dirección</label>
+                                <input type="text" v-model="form.direccion" class="form-control" placeholder="Dirección" id="inputDefault">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleTextarea" class="form-label mt-4">Descripción</label>
