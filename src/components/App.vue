@@ -11,17 +11,20 @@
                     <router-link class="nav-link" to="/">Inicio</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/acerca">Acerca de</router-link>
-                </li>
-                <li class="nav-item">
                     <router-link class="nav-link" to="/servicios">Servicios</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/clientes">Clientes</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/contacto">Contacto</router-link>
+                    <router-link class="nav-link" to="/proyectos">Proyectos</router-link>
                 </li>
+                <!--<li class="nav-item">
+                    <router-link class="nav-link" to="/acerca">Acerca de</router-link>
+                </li>-->
+                <!--<li class="nav-item">
+                    <router-link class="nav-link" to="/contacto">Contacto</router-link>
+                </li>-->
             </ul>
         </div>
     </div>
