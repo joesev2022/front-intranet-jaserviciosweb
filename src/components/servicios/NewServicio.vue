@@ -4,7 +4,32 @@ import Swal from 'sweetalert2';
 import { onMounted, ref } from 'vue';
 import { useRouter } from "vue-router";
 
+const router = useRouter();
+
 let form = ref([]);
+
+const onSave = async () => {
+    const formData = new FormData();
+    formData.append('titulo', form.value.titulo);
+    formData.append('descripcion_corta', form.value.descripcion_corta);
+    formData.append('descripcion', form.value.descripcion);
+    /*for (const value of formData.values()) {
+        console.log(value);    
+    }*/
+    await axios.post('http://localhost:8000/api/store_servicio', formData)
+    .then((response) => {
+        router.push('/servicios');
+        Swal.fire({
+            icon:"success",
+            title:`${response.data.mensaje}`
+        })
+        console.log(response.data.servicio);
+        console.log(response.data.mensaje);
+    })
+    .catch((error) => {
+        console.log(error.response.data);
+    })        
+};
 
 </script>
 <template>
@@ -19,7 +44,7 @@ let form = ref([]);
                     <div class="card-body">
                         <div class="form-group">
                             <label class="col-form-label mt-2" for="inputNombre">Título</label>
-                            <input type="text" v-model="form.nombre" class="form-control" placeholder="Título" id="inputNombre">
+                            <input type="text" v-model="form.titulo" class="form-control" placeholder="Título" id="inputNombre">
                         </div>
                         <div class="form-group">
                             <label for="inputDescCorta" class="form-label mt-4">Descripción corta</label>
@@ -29,12 +54,8 @@ let form = ref([]);
                             <label for="exampleTextarea" class="form-label mt-4">Descripción</label>
                             <textarea class="form-control" v-model="form.descripcion" id="exampleTextarea" rows="3"></textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="inputImagen" class="form-label mt-4">Imagen</label>
-                            <input class="form-control" type="file" id="inputImagen">
-                        </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary mt-2" type="submit">Agregar</button>
+                            <button class="btn btn-primary mt-2" type="submit" @click="onSave()">Agregar</button>
                         </div>
                         </div>
                 </div>

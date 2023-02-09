@@ -1,11 +1,18 @@
+<script setup>
+import { useRouter } from "vue-router";
+const router = useRouter();
+const newProyecto = () => {
+        router.push('/proyectos/new');
+}
+</script>
 <template>
     <div class="container">
         <div class="row">
-            <h1>Index Proyectos</h1>
+            <h1>Proyectos</h1>
         </div>
         <div class="row">
             <div class="col mb-2">
-                <button class="btn btn-primary">Nuevo Proyecto</button>
+                <button class="btn btn-primary" @click="newProyecto()">Nuevo Proyecto</button>
             </div>    
         </div>
         <div class="row">

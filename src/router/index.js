@@ -4,6 +4,7 @@ import Inicio from '../components/pages/Inicio.vue'
 import Servicios from '../components/pages/Servicios.vue'
 import Acerca from '../components/pages/Acerca.vue'
 import IndexProyectos from '../components/proyectos/IndexProyectos.vue'
+import NewProyecto from '../components/proyectos/NewProyecto.vue'
 import IndexServicios from '../components/servicios/IndexServicios.vue'
 import NewServicio from '../components/servicios/NewServicio.vue'
 import IndexClientes from '../components/clientes/IndexClientes.vue'
@@ -23,6 +24,10 @@ const routes = [
     {
         path: '/proyectos',
         component: IndexProyectos 
+    },
+    {
+        path: '/proyectos/new',
+        component: NewProyecto 
     },
     {
         path: '/servicios',
