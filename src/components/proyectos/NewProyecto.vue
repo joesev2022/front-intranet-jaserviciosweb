@@ -11,9 +11,9 @@ let options = ref([]);
 let value = ref([]);
 
 onMounted(async () => {
-    options.value.push('Diseño Web');
+    /*options.value.push('Diseño Web');
     options.value.push('Desarrollo Web');
-    options.value.push('SEO');
+    options.value.push('SEO');*/
 });
 </script>
 <template>
@@ -32,6 +32,24 @@ onMounted(async () => {
                         </div>
                         <div class="row">
                             <div class="col">
+                                <div>
+                                    <label class="col-form-label mt-2" for="inputPais">Fecha inicio</label>
+                                    <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+                                        <input type="date" class="form-control datetimepicker-input" data-target="#datetimepicker" v-model="form.fechaInicio" />
+                                    </div>                                                                      
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div>
+                                    <label class="col-form-label mt-2" for="inputPais">Fecha fin</label>
+                                    <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+                                        <input type="date" class="form-control datetimepicker-input" data-target="#datetimepicker" v-model="form.fechaFin" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
                                 <label class="col-form-label mt-2" for="inputPais">Cliente</label>
                                 <select class="form-select" id="exampleSelect1" v-model="cliente_id">
                                     <option disabled>Seleccionar Cliente</option>
@@ -40,7 +58,10 @@ onMounted(async () => {
                             <div class="col">
                                 <div>
                                     <label class="col-form-label mt-2" for="inputPais">Servicios</label>
-                                    <Multiselect v-model="value" mode="tags" :searchable="true" :options="options" :close-on-select="false"/>
+                                    <select class="form-select" id="exampleSelect1" v-model="cliente_id">
+                                        <option disabled>Seleccionar Servicio</option>
+                                    </select>
+                                    <!--<Multiselect v-model="value" mode="tags" :searchable="true" :options="options" :close-on-select="false"/>-->
                                 </div>
                             </div>
                         </div>
