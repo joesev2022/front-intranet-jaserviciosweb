@@ -7,10 +7,30 @@ import Multiselect from '@vueform/multiselect';
 
 let form = ref([]);
 let cliente_id = ref([]);
+let servicio_id = ref([]);
+let clientes = ref([]);
+let servicios = ref([]);
 let options = ref([]);
 let value = ref([]);
 
+const onSave = () => {
+    console.log(form.value.nombre);
+    console.log(form.value.fechaInicio);
+}
+
+const getClientes = async () => {
+    let response = await axios.get('http://localhost:8000/api/get_all_clientes');
+    clientes.value = response.data.clientes;
+};
+
+const getServicios = async () => {
+    let response = await axios.get('http://localhost:8000/api/get_all_servicios');
+    servicios.value = response.data.servicios;
+};
+
 onMounted(async () => {
+    getClientes()
+    getServicios()
     /*options.value.push('Diseño Web');
     options.value.push('Desarrollo Web');
     options.value.push('SEO');*/
@@ -53,13 +73,19 @@ onMounted(async () => {
                                 <label class="col-form-label mt-2" for="inputPais">Cliente</label>
                                 <select class="form-select" id="exampleSelect1" v-model="cliente_id">
                                     <option disabled>Seleccionar Cliente</option>
+                                    <option :value="cliente.id" v-for="cliente in clientes" :key="cliente.id">
+                                        {{ cliente.nombre }}
+                                    </option>
                                 </select>
                             </div>
                             <div class="col">
                                 <div>
                                     <label class="col-form-label mt-2" for="inputPais">Servicios</label>
-                                    <select class="form-select" id="exampleSelect1" v-model="cliente_id">
+                                    <select class="form-select" id="exampleSelect1" v-model="servicio_id">
                                         <option disabled>Seleccionar Servicio</option>
+                                        <option :value="servicio.id" v-for="servicio in servicios" :key="servicio.id">
+                                            {{ servicio.titulo }}
+                                        </option>
                                     </select>
                                     <!--<Multiselect v-model="value" mode="tags" :searchable="true" :options="options" :close-on-select="false"/>-->
                                 </div>
@@ -70,7 +96,7 @@ onMounted(async () => {
                             <textarea class="form-control" v-model="form.descripcion" id="exampleTextarea" rows="3"></textarea>
                         </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary mt-2" type="submit">Agregar</button>
+                            <button class="btn btn-primary mt-2" type="submit" @click="onSave()">Agregar</button>
                         </div>
                         </div>
                 </div>
