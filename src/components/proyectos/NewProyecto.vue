@@ -11,7 +11,7 @@ let servicio_id = ref([]);
 let clientes = ref([]);
 let servicios = ref([]);
 let options = ref([]);
-let value = ref([]);
+let colaborador_id = ref([]);
 
 const onSave = () => {
     console.log(form.value.nombre);
@@ -31,9 +31,10 @@ const getServicios = async () => {
 onMounted(async () => {
     getClientes()
     getServicios()
-    /*options.value.push('Diseño Web');
-    options.value.push('Desarrollo Web');
-    options.value.push('SEO');*/
+    options.value.push('Javier - Font End - Semi Senior');
+    options.value.push('Nicolas - Font End - Junior');
+    options.value.push('Luis - Back End - Senior');
+    options.value.push('Martin - QA Tester - Junior');
 });
 </script>
 <template>
@@ -81,7 +82,7 @@ onMounted(async () => {
                             <div class="col">
                                 <div>
                                     <label class="col-form-label mt-2" for="inputPais">Servicios</label>
-                                    <select class="form-select" id="exampleSelect1" v-model="servicio_id">
+                                    <select class="form-select" id="exampleSelect2" v-model="servicio_id">
                                         <option disabled>Seleccionar Servicio</option>
                                         <option :value="servicio.id" v-for="servicio in servicios" :key="servicio.id">
                                             {{ servicio.titulo }}
@@ -89,6 +90,12 @@ onMounted(async () => {
                                     </select>
                                     <!--<Multiselect v-model="value" mode="tags" :searchable="true" :options="options" :close-on-select="false"/>-->
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label class="col-form-label mt-2" for="inputPais">Colaboradores</label>
+                                <Multiselect v-model="colaborador_id" mode="tags" :searchable="true" :options="options" :close-on-select="false"/>
                             </div>
                         </div>
                         <div class="form-group">

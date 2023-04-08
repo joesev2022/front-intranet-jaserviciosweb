@@ -19,6 +19,15 @@
                 <li class="nav-item">
                     <router-link class="nav-link" to="/proyectos">Proyectos</router-link>
                 </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="#">Colaboradores</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="#">Profesiones</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="#">Tareas</router-link>
+                </li>
                 <!--<li class="nav-item">
                     <router-link class="nav-link" to="/acerca">Acerca de</router-link>
                 </li>-->
