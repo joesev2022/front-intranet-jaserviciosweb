@@ -7,6 +7,22 @@ import axios from 'axios'
 let profesiones = ref([]);
 let searchProfesionValue = ref([]);
 
+const router = useRouter();
+
+const newProfesion = () => {
+        router.push('/profesiones/new');
+}
+
+const getProfesiones = async () => {
+        let response = await axios.get("http://localhost:8000/api/get_all_profesiones")
+        console.log('response', response);
+        profesiones.value = response.data.profesiones
+}
+
+onMounted(async () => {
+    getProfesiones()
+})
+
 </script>
 <template>
     <div class="container">
@@ -15,7 +31,7 @@ let searchProfesionValue = ref([]);
         </div>
         <div class="row">
             <div class="col mb-2">
-                <button class="btn btn-primary">Nueva Profesión</button>
+                <button class="btn btn-primary" @click="newProfesion()">Nueva Profesión</button>
             </div>    
         </div>
         <div class="row">

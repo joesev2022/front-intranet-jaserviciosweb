@@ -11,6 +11,7 @@ import IndexClientes from '../components/clientes/IndexClientes.vue'
 import NewCliente from '../components/clientes/NewCliente.vue'
 import EditCliente from '../components/clientes/EditCliente.vue'
 import IndexProfesiones from '../components/profesiones/IndexProfesiones.vue'
+import NewProfesion from '../components/profesiones/NewProfesion.vue'
 import IndexColaboradores from '../components/colaboradores/IndexColaboradores.vue'
 import Error404 from '../components/Error404.vue'
 
@@ -55,6 +56,10 @@ const routes = [
     {
         path: '/profesiones',
         component: IndexProfesiones 
+    },
+    {
+        path: '/profesiones/new',
+        component: NewProfesion 
     },
     {
         path: '/colaboradores',
