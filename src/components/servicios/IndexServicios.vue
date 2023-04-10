@@ -11,15 +11,15 @@ const newServicio = () => {
         router.push('/servicios/new');
 }
 
+onMounted(async () => {
+    getServicios()
+})
+
 const getServicios = async () => {
         let response = await axios.get("http://localhost:8000/api/get_all_servicios")
         console.log('response', response);
         servicios.value = response.data.servicios
 }
-
-onMounted(async () => {
-    getServicios()
-})
 
 </script>
 <template>

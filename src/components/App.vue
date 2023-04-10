@@ -20,10 +20,10 @@
                     <router-link class="nav-link" to="/proyectos">Proyectos</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="#">Colaboradores</router-link>
+                    <router-link class="nav-link" to="/colaboradores">Colaboradores</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="#">Profesiones</router-link>
+                    <router-link class="nav-link" to="/profesiones">Profesiones</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="#">Tareas</router-link>
