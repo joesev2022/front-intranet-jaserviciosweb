@@ -14,8 +14,13 @@ let options = ref([]);
 let colaborador_id = ref([]);
 
 const onSave = () => {
-    console.log(form.value.nombre);
+    console.log(form.value.titulo);
     console.log(form.value.fechaInicio);
+    console.log(form.value.fechaFin);
+    console.log('Cliente: ', cliente_id.value);
+    console.log('Servicio: ', servicio_id.value);
+    console.log('Colaboradores: ', colaborador_id.value);
+    console.log(form.value.descripcion);
 }
 
 const getClientes = async () => {
@@ -49,7 +54,7 @@ onMounted(async () => {
                     <div class="card-body">
                         <div class="form-group">
                             <label class="col-form-label mt-2" for="inputNombre">Título</label>
-                            <input type="text" v-model="form.nombre" class="form-control" placeholder="Título" id="inputNombre">
+                            <input type="text" v-model="form.titulo" class="form-control" placeholder="Título" id="inputNombre">
                         </div>
                         <div class="row">
                             <div class="col">
