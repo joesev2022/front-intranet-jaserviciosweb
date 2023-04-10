@@ -3,8 +3,14 @@ import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from 'axios'
 
+const router = useRouter();
+
 let colaboradores = ref([]);
 let searchColaboradorValue = ref([]);
+
+const newColaborador = () => {
+        router.push('/colaboradores/new');
+}
 </script>
 <template>
     <div class="container">
@@ -13,7 +19,7 @@ let searchColaboradorValue = ref([]);
         </div>
         <div class="row">
             <div class="col mb-2">
-                <button class="btn btn-primary">Nuevo Colaborador</button>
+                <button class="btn btn-primary" @click="newColaborador()">Nuevo Colaborador</button>
             </div>    
         </div>
         <div class="row">

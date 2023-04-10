@@ -13,6 +13,7 @@ import EditCliente from '../components/clientes/EditCliente.vue'
 import IndexProfesiones from '../components/profesiones/IndexProfesiones.vue'
 import NewProfesion from '../components/profesiones/NewProfesion.vue'
 import IndexColaboradores from '../components/colaboradores/IndexColaboradores.vue'
+import NewColaborador from '../components/colaboradores/NewColaborador.vue'
 import Error404 from '../components/Error404.vue'
 
 const routes = [
@@ -64,6 +65,10 @@ const routes = [
     {
         path: '/colaboradores',
         component: IndexColaboradores 
+    },
+    {
+        path: '/colaboradores/new',
+        component: NewColaborador
     },
     {
         path: '/:pathMatch(.*)*',

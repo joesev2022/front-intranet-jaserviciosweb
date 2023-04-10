@@ -21,7 +21,7 @@ const getProfesiones = async () => {
 
 onMounted(async () => {
     getProfesiones()
-})
+});
 
 </script>
 <template>
