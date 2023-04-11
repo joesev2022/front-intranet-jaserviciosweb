@@ -3,6 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { onMounted, ref } from 'vue';
 import { useRouter } from "vue-router";
+//import Multiselect from "vue-multiselect";
 import Multiselect from '@vueform/multiselect';
 
 let form = ref([]);
@@ -10,6 +11,7 @@ let cliente_id = ref([]);
 let servicio_id = ref([]);
 let clientes = ref([]);
 let servicios = ref([]);
+let colaboradores = ref([]);
 let options = ref([]);
 let colaborador_id = ref([]);
 
@@ -33,13 +35,19 @@ const getServicios = async () => {
     servicios.value = response.data.servicios;
 };
 
+const getColaboradores = async () => {
+    let response = await axios.get('http://localhost:8000/api/get_all_colaboradores');
+    colaboradores.value = response.data.colaboradores;
+};
+
 onMounted(async () => {
     getClientes()
     getServicios()
-    options.value.push('Javier - Font End - Semi Senior');
+    getColaboradores()
+    /*options.value.push('Javier - Font End - Semi Senior');
     options.value.push('Nicolas - Font End - Junior');
     options.value.push('Luis - Back End - Senior');
-    options.value.push('Martin - QA Tester - Junior');
+    options.value.push('Martin - QA Tester - Junior');*/
 });
 </script>
 <template>
@@ -100,7 +108,19 @@ onMounted(async () => {
                         <div class="row">
                             <div class="col">
                                 <label class="col-form-label mt-2" for="inputPais">Colaboradores</label>
-                                <Multiselect v-model="colaborador_id" mode="tags" :searchable="true" :options="options" :close-on-select="false"/>
+                                <Multiselect 
+                                v-model="colaborador_id"
+                                :options="colaboradores"
+                                :custom-label="({ nombre, profesion }) => `${nombre} - [${profesion.nombre}]`"  
+                                mode="tags" 
+                                valueProp="id" 
+                                trackBy="nombre" 
+                                label="nombre"
+                                :object="true" 
+                                :searchable="true"
+                                :close-on-select="false" 
+                                placeholder="Seleccionar">
+                                </Multiselect>
                             </div>
                         </div>
                         <div class="form-group">

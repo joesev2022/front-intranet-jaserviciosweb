@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './components/App.vue'
 import VueSweetalert2 from 'vue-sweetalert2';
 import Multiselect from '@vueform/multiselect';
+//import VueMultiselect from 'vue-multiselect';
 import Datepicker from '@vuepic/vue-datepicker';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import '@vueform/multiselect/themes/default.css';
