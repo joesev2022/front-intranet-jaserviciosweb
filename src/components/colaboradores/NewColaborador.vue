@@ -36,6 +36,35 @@ const getTipoColaboradores = async () => {
     tipoColaboradores.value = response.data.tipoColaboradores;
 };
 
+const onSave = async () => {
+    const formData = new FormData();
+    formData.append('nombre', form.value.nombre);
+    formData.append('apellido', form.value.apellido);
+    formData.append('celular', form.value.celular);
+    formData.append('email', form.value.email);
+    formData.append('pais_id', pais_id.value);
+    formData.append('direccion', form.value.direccion);
+    formData.append('nivel_id', nivel_id.value);
+    formData.append('profesion_id', profesion_id.value);
+    formData.append('tipo_colaborador_id', tipo_colaborador_id.value);
+    /*for (const value of formData.values()) {
+        console.log(value);    
+    }*/
+    await axios.post('http://localhost:8000/api/store_colaborador', formData)
+    .then((response) => {
+        router.push('/colaboradores');
+        Swal.fire({
+            icon:"success",
+            title:`${response.data.mensaje}`
+        })
+        console.log(response.data.cliente);
+        console.log(response.data.mensaje);
+    })
+    .catch((response) => {
+        console.log(response);
+    })        
+};
+
 onMounted(async () => {
     getPaises(),
     getNiveles(),

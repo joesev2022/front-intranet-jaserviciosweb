@@ -11,6 +11,16 @@ let searchColaboradorValue = ref([]);
 const newColaborador = () => {
         router.push('/colaboradores/new');
 }
+
+const getColaboradores = async () => {
+        let response = await axios.get("http://localhost:8000/api/get_all_colaboradores")
+        console.log('response', response);
+        colaboradores.value = response.data.colaboradores
+}
+
+onMounted(async () => {
+    getColaboradores()
+});
 </script>
 <template>
     <div class="container">
@@ -44,6 +54,8 @@ const newColaborador = () => {
                         <tr v-for="colaborador in colaboradores" :key="colaborador.id" v-if="colaboradores.length > 0">
                             <td>{{ colaborador.id }}</td>
                             <td>{{ colaborador.nombre }}</td>
+                            <td v-if="colaborador.profesion">{{ colaborador.profesion.nombre }}</td><td v-else></td>
+                            <td v-if="colaborador.nivel">{{ colaborador.nivel.nombre }}</td><td v-else></td>
                             <td>
                                 <button class="btn btn-success">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
